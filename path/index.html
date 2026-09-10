@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civ Nexus — A vision of life beyond scarcity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f7f3ea;
+    --cream-2:#efe9db;
+    --forest:#1f3d2c;
+    --forest-2:#2f5240;
+    --gold:#c9a24b;
+    --sky:#7fb8c9;
+    --white:#ffffff;
+    --ink:#20261f;
+    --rail-w:88px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden;}
+  #root{position:relative;width:100vw;min-height:100vh;overflow:hidden;}
+
+  #globe-container{
+    position:fixed;
+    top:0; left:0;
+    width:100vw; height:100vh;
+    z-index:1;
+  }
+
+  #globe-container canvas{ display:block; }
+
+  /* scroll progress hairline */
+  #scroll-progress{
+    position:fixed;
+    top:0; left:0;
+    height:2px;
+    width:0%;
+    background:var(--gold);
+    z-index:100;
+    transition:width 0.08s linear;
+  }
+
+  /* top hairline bar */
+  #topbar{
+    position:fixed;
+    top:0; left:0; right:0;
+    height:64px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 32px 0 calc(var(--rail-w) + 8px);
+    border-bottom:1px solid rgba(32,38,31,0.12);
+    background:rgba(247,243,234,0.55);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    z-index:50;
+  }
+  #topbar .brand{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:14px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--forest);
+  }
+  #topbar nav{
+    display:flex;
+    gap:36px;
+  }
+  #topbar nav a{
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink);
+    text-decoration:none;
+    opacity:0.65;
+    transition:opacity 0.25s ease;
+  }
+  #topbar nav a:hover{ opacity:1; }
+
+  /* left rail */
+  #rail{
+    position:fixed;
+    top:0; left:0; bottom:0;
+    width:var(--rail-w);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-between;
+    padding:24px 0 28px;
+    border-right:1px solid rgba(32,38,31,0.10);
+    background:rgba(247,243,234,0.35);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    z-index:49;
+  }
+  #rail .mark{
+    width:30px; height:30px;
+    border-radius:14px;
+    background:var(--forest);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  #rail .mark span{
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--gold);
+  }
+  #rail .rail-meta{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-size:10px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--ink);
+    opacity:0.5;
+  }
+  #rail .rail-dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--forest-2);
+    opacity:0.5;
+  }
+
+  /* hero copy */
+  #hero{
+    position:fixed;
+    left:calc(var(--rail-w) + 48px);
+    right:64px;
+    top:0;
+    bottom:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    z-index:10;
+    pointer-events:none;
+    max-width:760px;
+  }
+  #hero .eyebrow{
+    font-size:11px;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--forest-2);
+    margin-bottom:22px;
+    opacity:0;
+    transform:translateY(10px);
+    animation:riseIn 1s ease forwards;
+    animation-delay:0.15s;
+  }
+  #hero h1{
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    font-size:clamp(48px, 8vw, 108px);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    margin:0 0 28px 0;
+    color:var(--forest);
+    opacity:0;
+    transform:translateY(14px);
+    animation:riseIn 1.1s ease forwards;
+    animation-delay:0.3s;
+  }
+  #hero h1 em{
+    font-style:italic;
+    color:var(--gold);
+  }
+  #hero .lede{
+    font-size:clamp(16px, 1.6vw, 20px);
+    line-height:1.55;
+    font-weight:400;
+    color:var(--ink);
+    max-width:480px;
+    margin:0 0 10px 0;
+    opacity:0;
+    transform:translateY(10px);
+    animation:riseIn 1.1s ease forwards;
+    animation-delay:0.5s;
+  }
+  #hero .sub{
+    font-size:14px;
+    line-height:1.6;
+    font-weight:400;
+    color:var(--ink);
+    opacity:0;
+    max-width:440px;
+    margin:0 0 40px 0;
+    opacity:0;
+    transform:translateY(10px);
+    animation:riseIn 1.1s ease forwards;
+    animation-delay:0.65s;
+  }
+  #hero .sub b{
+    color:var(--forest-2);
+    font-weight:600;
+  }
+
+  #cta-row{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    pointer-events:auto;
+    opacity:0;
+    transform:translateY(10px);
+    animation:riseIn 1.1s ease forwards;
+    animation-delay:0.8s;
+  }
+  #explore-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--forest);
+    color:var(--cream);
+    border:none;
+    padding:15px 26px;
+    border-radius:14px;
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    letter-spacing:0.04em;
+    font-weight:500;
+    cursor:pointer;
+    box-shadow:0 10px 30px -12px rgba(31,61,44,0.35);
+    transition:transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease, background 0.35s ease;
+  }
+  #explore-btn:hover{
+    transform:translateY(-2px);
+    background:var(--forest-2);
+    box-shadow:0 14px 34px -10px rgba(31,61,44,0.45);
+  }
+  #explore-btn svg{
+    transition:transform 0.35s cubic-bezier(.2,.8,.2,1);
+  }
+  #explore-btn:hover svg{
+    transform:translateX(4px);
+  }
+  #cta-hint{
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink);
+    opacity:0.45;
+  }
+
+  @keyframes riseIn{
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  /* scroll indicator */
+  #scroll-indicator{
+    position:fixed;
+    bottom:36px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    z-index:20;
+    opacity:0;
+    animation:riseIn 1s ease forwards;
+    animation-delay:1.1s;
+    pointer-events:none;
+  }
+  #scroll-indicator .label{
+    font-size:10px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--forest);
+    opacity:0.55;
+  }
+  #scroll-indicator .stem{
+    width:1px;
+    height:34px;
+    background:linear-gradient(to bottom, rgba(31,61,44,0.55), transparent);
+    position:relative;
+    overflow:hidden;
+  }
+  #scroll-indicator .stem::after{
+    content:'';
+    position:absolute;
+    left:0; top:-100%;
+    width:100%; height:100%;
+    background:var(--gold);
+    animation:dropDown 2.2s ease-in-out infinite;
+  }
+  @keyframes dropDown{
+    0%{ top:-100%; }
+    60%{ top:100%; }
+    100%{ top:100%; }
+  }
+
+  /* bottom-right meta */
+  #corner-meta{
+    position:fixed;
+    right:32px;
+    bottom:36px;
+    z-index:20;
+    text-align:right;
+    opacity:0;
+    animation:riseIn 1s ease forwards;
+    animation-delay:1s;
+    pointer-events:none;
+  }
+  #corner-meta .coords{
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:var(--forest);
+    opacity:0.5;
+    font-variant-numeric:tabular-nums;
+  }
+
+  #loader{
+    position:fixed;
+    inset:0;
+    background:var(--cream);
+    z-index:200;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #loader.hidden{
+    opacity:0;
+    visibility:hidden;
+  }
+  #loader .loader-mark{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+  }
+  #loader .ring{
+    width:34px; height:34px;
+    border-radius:50%;
+    border:2px solid rgba(31,61,44,0.15);
+    border-top-color:var(--forest);
+    animation:spin 0.9s linear infinite;
+  }
+  #loader .loader-text{
+    font-size:11px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--forest);
+    opacity:0.6;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  @media (max-width: 860px){
+    :root{ --rail-w:0px; }
+    #rail{ display:none; }
+    #topbar{ padding:0 20px; }
+    #hero{ left:24px; right:24px; top:96px; bottom:auto; justify-content:flex-start; }
+    #hero h1{ font-size:clamp(40px, 12vw, 64px); }
+    #corner-meta{ display:none; }
+  }
+</style>
+</head>
+<body>
+<div id="root">
+
+  <div id="loader">
+    <div class="loader-mark">
+      <div class="ring"></div>
+      <div class="loader-text">Assembling Earth</div>
+    </div>
+  </div>
+
+  <div id="scroll-progress"></div>
+
+  <div id="globe-container"></div>
+
+  <header id="topbar">
+    <div class="brand">Civ Nexus</div>
+    <nav>
+      <a href="#vision">Vision</a>
+      <a href="#principles">Principles</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div id="rail">
+    <div class="mark"><span></span></div>
+    <div class="rail-meta">
+      <div>Earth · 2050</div>
+    </div>
+    <div class="rail-dot"></div>
+  </div>
+
+  <main id="hero">
+    <div class="eyebrow">A future without scarcity</div>
+    <h1>CIV<br><em>NEXUS</em></h1>
+    <p class="lede">A vision of life beyond scarcity.</p>
+    <p class="sub">A world where <b>intelligence is abundant</b>, <b>energy is clean</b>, and humanity is free to flourish — to live, love, learn, create, and explore.</p>
+    <div id="cta-row">
+      <button id="explore-btn">
+        Explore the vision
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <span id="cta-hint">No login. Just look.</span>
+    </div>
+  </main>
+
+  <div id="corner-meta">
+    <div class="coords">45.0° N · 12.3° E</div>
+  </div>
+
+  <div id="scroll-indicator">
+    <div class="label">Scroll</div>
+    <div class="stem"></div>
+  </div>
+
+</div>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+}
+</script>
+<script type="module" src="./globe.js"></script>
+</body>
+</html>
