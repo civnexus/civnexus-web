@@ -220,15 +220,16 @@
     .place-marker.align-left:hover span { transform: translateX(-3px); }
     .place-marker.tidal { top: 58%; left: 75%; }
     .place-marker.canopy { top: 61%; left: 51%; }
-    .place-marker.sunwell { top: 44%; left: 68%; }
-    .place-marker.meridian { top: 69%; left: 59%; }
-    .place-marker.vitruvia { top: 29%; left: 80%; }
+    .place-marker.sunwell { top: 47%; left: 77%; }
+    .place-marker.meridian { top: 50%; left: 61%; }
+    .place-marker.vitruvia { top: 29%; left: 55%; }
     .place-marker.amber { top: 45%; left: 87%; }
     .place-marker.treasury { top: 43%; left: 52%; }
     .place-marker.aster { top: 19%; left: 66%; }
-    .place-marker.mantle { top: 27%; left: 56%; }
-    .place-marker.harmonic { top: 71%; left: 84%; }
-    .place-marker.eden { top: 80%; left: 72%; }
+    .place-marker.mantle { top: 11%; left: 69%; }
+    .place-marker.harmonic { top: 25%; left: 76%; }
+    .place-marker.vitruvia, .place-marker.harmonic, .place-marker.eden { transform: translateX(calc(-100% + 17px)); }
+    .place-marker.eden { top: 31%; left: 81%; }
 
     .place-experience {
       --experience-rgb: 8, 38, 38;
@@ -417,7 +418,7 @@
       .vision h2 { font-size: 40px; }
       .map-markers { position: relative; inset: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: auto 0 0; padding: 12px 18px 64px; pointer-events: auto; }
       .place-marker, .place-marker.tidal, .place-marker.canopy, .place-marker.sunwell, .place-marker.meridian, .place-marker.vitruvia, .place-marker.amber, .place-marker.treasury, .place-marker.aster, .place-marker.mantle, .place-marker.harmonic, .place-marker.eden { position: relative; inset: auto; flex: 0 0 auto; gap: 7px; }
-      .place-marker.align-left { flex-direction: row; }
+      .place-marker.align-left { flex-direction: row; transform: none; }
       .place-marker.align-left::after { left: -6px; right: auto; }
       .place-marker::before, .place-marker::after { display: none; }
       .place-marker::after { left: -6px; }
@@ -462,11 +463,11 @@
 
     <header class="topbar">
       <div class="brand">Civ Nexus</div>
-      <a class="journal-link" href="https://civnet.civnexus.com/">Journal <span aria-hidden="true">↗</span></a>
+      <a class="journal-link" href="https://civnet.civnexus.com/">CivNet Terminal <span aria-hidden="true">↗</span></a>
     </header>
 
     <main class="hero">
-      <p class="kicker">Building the next era of civilization</p>
+      <p class="kicker">A future beyond scarcity</p>
       <h1><span>CIV</span><span>NEXUS</span></h1>
       <p class="lede">A world where <strong>intelligence is abundant</strong>, energy is clean, and every person is free to live, love, learn, and create.</p>
       <div class="actions">
@@ -485,7 +486,7 @@
         <button class="place-marker treasury" type="button" data-open-place="living-treasury"><span>The Living Treasury</span></button>
         <button class="place-marker aster" type="button" data-open-place="aster-academy"><span>Aster Academy</span></button>
         <button class="place-marker mantle" type="button" data-open-place="mantle-works"><span>Mantle Works</span></button>
-        <button class="place-marker harmonic align-left" type="button" data-open-place="the-harmonic"><span>The Harmonic</span></button>
+        <button class="place-marker harmonic align-left" type="button" data-open-place="the-harmonic"><span>The Resonant Coast</span></button>
         <button class="place-marker eden align-left" type="button" data-open-place="eden"><span>Eden</span></button>
       </div>
 
@@ -498,14 +499,12 @@
         <h2 id="vision-title" tabindex="-1">What if progress felt like coming home?</h2>
         <p>Civ Nexus is a research and project-development initiative exploring better ways to live, organize, discover, and build. This imagined Earth in 2050 is a window into that ambition: a future where abundant intelligence and clean energy expand what is possible. AI is no longer a separate tool, but a trusted partner woven quietly through daily life—expanding what people can learn, create, coordinate, and care for.</p>
         <p>As heavy industry, mining, computation, and manufacturing increasingly move beyond Earth, this planet becomes our shared living home: a world of thriving communities devoted to culture, discovery, and ecological renewal. Better institutions and shared research help communities care for the watersheds, habitats, and human relationships that connect us.</p>
-        <p>The result is not enforced sameness, but vastly more room for individual life: beautiful private homes, ownership, flourishing enterprise, travel, craft, family, and paths no one else would choose. Abundance raises the floor without lowering the horizon.</p>
         <h3 class="principles-heading" id="principles-title" tabindex="-1">Three principles</h3>
         <div class="principles">
           <div class="principle"><b>A high floor, an open horizon</b><span>Essentials are plentiful while homes, enterprise, ownership, and personal ambition remain richly individual.</span></div>
           <div class="principle"><b>Earth, renewed</b><span>Communities become active stewards of the living world, restoring more than they consume.</span></div>
           <div class="principle"><b>Life, enlarged</b><span>Freed from survival, people and AI work in harmony to learn deeply, care widely, and build beautifully.</span></div>
         </div>
-        <p class="next">Explore eleven imagined places in 2050. These stories are speculative visions, not operating communities. Return to Earth and choose a place to enter.</p>
         <p class="vision-contact"><span>Continue the conversation</span><a href="mailto:connect@civnexus.com">connect@civnexus.com</a></p>
       </div>
     </aside>
@@ -840,12 +839,12 @@
       </div>
       <div class="experience-copy">
         <p class="experience-kicker">Where healing begins with listening</p>
-        <h2 id="harmonic-title" tabindex="-1">The<br>Harmonic</h2>
+        <h2 id="harmonic-title" tabindex="-1">The<br>Resonant Coast</h2>
         <p class="experience-summary">A limestone coastal arcology where sound becomes medicine, music becomes civic life, and humanity learns to listen beyond itself.</p>
         <button class="light-button" type="button" data-open-day>Spend a day with Lucian <span aria-hidden="true">→</span></button>
       </div>
       <aside class="day-panel" aria-hidden="true" aria-labelledby="harmonic-day-title">
-        <button class="day-close" type="button"><span aria-hidden="true">←</span> Back to the harmonic</button>
+        <button class="day-close" type="button"><span aria-hidden="true">←</span> Back to the coast</button>
         <div class="person">
           <img class="person-photo" src="/lucian.webp" alt="Portrait of Lucian Hayes" />
           <div><b>Lucian Hayes</b><span>Resonance physician · 39</span></div>
