@@ -1,6 +1,6 @@
 # Civ Nexus
 
-A research and project-development initiative exploring better ways to live, organize, discover, and build. This interactive 2050 vision presents eleven imagined communities where people, AI, and the living world flourish together.
+A research and project-development initiative exploring better ways to live, organize, discover, and build. This interactive 2050 vision presents twelve imagined communities where people, AI, and the living world flourish together.
 
 Contact: connect@civnexus.com
 

@@ -218,6 +218,8 @@
     .place-marker.align-left { flex-direction: row-reverse; }
     .place-marker.align-left::after { left: auto; right: -5px; }
     .place-marker.align-left:hover span { transform: translateX(-3px); }
+    .place-marker.aurora { top: 17%; left: 52%; }
+    .aurora-experience { --experience-rgb: 10, 28, 38; }
     .place-marker.tidal { top: 58%; left: 75%; }
     .place-marker.canopy { top: 61%; left: 51%; }
     .place-marker.sunwell { top: 47%; left: 77%; }
@@ -417,7 +419,7 @@
       .vision-content { padding: 96px 28px 38px; }
       .vision h2 { font-size: 40px; }
       .map-markers { position: relative; inset: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: auto 0 0; padding: 12px 18px 64px; pointer-events: auto; }
-      .place-marker, .place-marker.tidal, .place-marker.canopy, .place-marker.sunwell, .place-marker.meridian, .place-marker.vitruvia, .place-marker.amber, .place-marker.treasury, .place-marker.aster, .place-marker.mantle, .place-marker.harmonic, .place-marker.eden { position: relative; inset: auto; flex: 0 0 auto; gap: 7px; }
+      .place-marker, .place-marker.aurora, .place-marker.tidal, .place-marker.canopy, .place-marker.sunwell, .place-marker.meridian, .place-marker.vitruvia, .place-marker.amber, .place-marker.treasury, .place-marker.aster, .place-marker.mantle, .place-marker.harmonic, .place-marker.eden { position: relative; inset: auto; flex: 0 0 auto; gap: 7px; }
       .place-marker.align-left { flex-direction: row; transform: none; }
       .place-marker.align-left::after { left: -6px; right: auto; }
       .place-marker::before, .place-marker::after { display: none; }
@@ -477,6 +479,7 @@
     </main>
 
       <div class="map-markers" aria-label="Places to explore">
+        <button class="place-marker aurora" type="button" data-open-place="aurora-reach"><span>The Aurora Reach</span></button>
         <button class="place-marker tidal" type="button" data-open-place="tidal-commons"><span>The Tidal Commons</span></button>
         <button class="place-marker canopy" type="button" data-open-place="the-canopy"><span>The Canopy</span></button>
         <button class="place-marker sunwell" type="button" data-open-place="the-sunwell"><span>The Sunwell</span></button>
@@ -745,7 +748,7 @@
     </section>
 
     <section class="place-experience treasury-experience" id="living-treasury" aria-hidden="true" aria-labelledby="treasury-title">
-      <img src="/living-treasury.webp" alt="A monumental conservatory protecting a rare red tropical flower and its cloud-forest ecosystem" />
+      <img src="/living-treasury.webp" alt="A monumental conservatory protecting vibrant clusters of exotic flowers and their cloud-forest ecosystems" />
       <div class="experience-top">
         <button class="experience-back" type="button" aria-label="Return to Earth"><span aria-hidden="true">←</span> Return to Earth</button>
         <span class="experience-number">Biodiversity institute</span>
@@ -765,9 +768,9 @@
         <h3 id="treasury-day-title" tabindex="-1">An ordinary day in 2050</h3>
         <p class="day-intro">Clara protects living masterpieces by understanding the webs of soil, climate, pollinators, and culture that allow them to remain wild.</p>
         <div class="moments">
-          <article class="moment"><time>06:10</time><div><b>The opening</b><p>A vast red flower begins its brief bloom. Clara quiets the gallery while pollinator drones and field biologists observe from beyond its scent boundary.</p></div></article>
-          <article class="moment"><time>12:30</time><div><b>The corridor council</b><p>A habitat model reveals one broken link in the flower’s future. Growers, residents, and land stewards choose a restoration path together.</p></div></article>
-          <article class="moment"><time>20:40</time><div><b>Memory and life</b><p>Its genome and ecology join CivNet and a crystal archive. The record is priceless; the living flower, rooted in relationship, is worth more.</p></div></article>
+          <article class="moment"><time>06:10</time><div><b>The opening</b><p>A cluster of rare orchids and brilliant red blooms opens with the morning light. Clara and the field biologists watch each species welcome its own pollinators.</p></div></article>
+          <article class="moment"><time>12:30</time><div><b>The corridor council</b><p>A habitat model reveals one broken link in the garden’s future. Growers, residents, and land stewards choose a restoration path together.</p></div></article>
+          <article class="moment"><time>20:40</time><div><b>Memory and life</b><p>Their genomes and ecology join CivNet and a crystal archive. The record is priceless; the living garden, rooted in relationship, is worth more.</p></div></article>
         </div>
         <p class="day-note">When objects can be made in abundance, the unrepeatable creations of life become civilization’s greatest treasures.</p>
       </aside>
@@ -832,7 +835,7 @@
     </section>
 
     <section class="place-experience harmonic-experience" id="the-harmonic" aria-hidden="true" aria-labelledby="harmonic-title">
-      <img src="/the-harmonic.webp" alt="A sonic-health arcology carved into sea cliffs with acoustic chambers and hydrophone gardens" />
+      <img src="/the-harmonic.webp" alt="An Irish coastal arcology with acoustic chambers, weathered standing stones, subtle Celtic carvings, and ocean listening gardens" />
       <div class="experience-top">
         <button class="experience-back" type="button" aria-label="Return to Earth"><span aria-hidden="true">←</span> Return to Earth</button>
         <span class="experience-number">Sonic health coast</span>
@@ -840,7 +843,7 @@
       <div class="experience-copy">
         <p class="experience-kicker">Where healing begins with listening</p>
         <h2 id="harmonic-title" tabindex="-1">The<br>Resonant Coast</h2>
-        <p class="experience-summary">A limestone coastal arcology where sound becomes medicine, music becomes civic life, and humanity learns to listen beyond itself.</p>
+        <p class="experience-summary">An Irish limestone coastal arcology where old traditions of music and gathering meet acoustic research, and humanity learns to listen beyond itself.</p>
         <button class="light-button" type="button" data-open-day>Spend a day with Lucian <span aria-hidden="true">→</span></button>
       </div>
       <aside class="day-panel" aria-hidden="true" aria-labelledby="harmonic-day-title">
@@ -854,7 +857,7 @@
         <div class="moments">
           <article class="moment"><time>06:40</time><div><b>The whale line</b><p>Hydrophones carry a migrating pod through the listening garden. An AI ecologist separates engines, weather, and voices without flattening the mystery.</p></div></article>
           <article class="moment"><time>11:15</time><div><b>A personal resonance</b><p>In a sunlit clinic, Lucian composes a precise field of sound and vibration that helps a patient’s nervous system rediscover calm.</p></div></article>
-          <article class="moment"><time>20:30</time><div><b>The public chord</b><p>The cliff amphitheater fills without a stage dividing performer from audience. Tonight, the city plays itself as an instrument.</p></div></article>
+          <article class="moment"><time>20:30</time><div><b>The public chord</b><p>The cliff amphitheater fills without a stage dividing performer from audience. Harp, fiddle, and human voices pass a melody around the gathering, joining the sea’s rhythm.</p></div></article>
         </div>
         <p class="day-note">Here, sound is not background. It is relationship—between body and mind, person and community, humanity and the living sea.</p>
       </aside>
@@ -886,6 +889,35 @@
           <article class="moment"><time>19:30</time><div><b>The long table</b><p>Five generations gather beneath the orchard lights. Longevity matters because affection, curiosity, and unfinished work keep giving time a direction.</p></div></article>
         </div>
         <p class="day-note">A long life is not the promise of forever. It is more health, more beginnings, and more time to become useful to one another.</p>
+      </aside>
+    </section>
+
+    <section class="place-experience aurora-experience" id="aurora-reach" aria-hidden="true" aria-labelledby="aurora-title">
+      <img src="/aurora-reach.webp" alt="Warm timber homes and a sky observatory above an Alaskan fjord beneath the northern lights" />
+      <div class="experience-top">
+        <button class="experience-back" type="button" aria-label="Return to Earth"><span aria-hidden="true">←</span> Return to Earth</button>
+        <span class="experience-number">Alaskan sky and wilderness observatory</span>
+      </div>
+      <div class="experience-copy">
+        <p class="experience-kicker">Where the sky comes close</p>
+        <h2 id="aurora-title" tabindex="-1">The Aurora<br>Reach</h2>
+        <p class="experience-summary">Above an Alaskan fjord, warm homes and a quiet observatory share a vast horizon. Here, studying the northern sky and caring for the wild are part of everyday life.</p>
+        <button class="light-button" type="button" data-open-day>Spend a day with Mara <span aria-hidden="true">→</span></button>
+      </div>
+      <aside class="day-panel" aria-hidden="true" aria-labelledby="aurora-day-title">
+        <button class="day-close" type="button"><span aria-hidden="true">←</span> Back to the reach</button>
+        <div class="person">
+          <img class="person-photo" src="/mara.webp" alt="Portrait of Mara Ellis" />
+          <div><b>Mara Ellis</b><span>Aurora researcher and field engineer · 38</span></div>
+        </div>
+        <h3 id="aurora-day-title" tabindex="-1">An ordinary day in 2050</h3>
+        <p class="day-intro">Mara keeps one eye on the upper atmosphere and the other on the paths, instruments, and neighbors that make a good life possible this far north.</p>
+        <div class="moments">
+          <article class="moment"><time>08:20</time><div><b>The blue hour</b><p>From a warm kitchen, Mara reviews the night’s magnetic readings. Her AI research partner finds a curious pattern; she chooses which ridge instruments to visit.</p></div></article>
+          <article class="moment"><time>13:10</time><div><b>Along the fjord</b><p>A quiet electric boat carries her to a field station. Local stewards guide the route around a resting wildlife colony; a repaired sensor rejoins the shared climate record.</p></div></article>
+          <article class="moment"><time>22:40</time><div><b>A curtain of light</b><p>Neighbors gather under the observatory’s glass roof as green light unfurls above the mountains. Mara shares the day’s discovery, then lets the room fall quiet.</p></div></article>
+        </div>
+        <p class="day-note">Comfort makes room for attention: to the sky, to the land, and to one another.</p>
       </aside>
     </section>
 
