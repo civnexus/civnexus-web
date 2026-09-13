@@ -224,6 +224,7 @@
     .place-marker.align-left { flex-direction: row-reverse; }
     .place-marker.align-left::after { left: auto; right: -5px; }
     .place-marker.align-left:hover span { transform: translateX(-3px); }
+    .place-marker.prime { top: 75%; left: 81%; }
     .place-marker.aurora { top: 17%; left: 52%; }
     .aurora-experience { --experience-rgb: 10, 28, 38; }
     .place-marker.tidal { top: 58%; left: 75%; }
@@ -426,6 +427,7 @@
       .vision h2 { font-size: 40px; }
       .map-markers { position: relative; inset: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: auto 0 0; padding: 12px 18px 64px; pointer-events: auto; }
       .place-marker, .place-marker.aurora, .place-marker.tidal, .place-marker.canopy, .place-marker.sunwell, .place-marker.meridian, .place-marker.vitruvia, .place-marker.amber, .place-marker.treasury, .place-marker.aster, .place-marker.mantle, .place-marker.harmonic, .place-marker.eden { position: relative; inset: auto; flex: 0 0 auto; gap: 7px; }
+      .place-marker.prime { position: relative; inset: auto; }
       .place-marker.align-left { flex-direction: row; transform: none; }
       .place-marker.align-left::after { left: -6px; right: auto; }
       .place-marker::before, .place-marker::after { display: none; }
@@ -485,6 +487,7 @@
     </main>
 
       <div class="map-markers" aria-label="Places to explore">
+        <button class="place-marker prime" type="button" data-open-place="prime-reserves"><span>Prime Reserves</span></button>
         <button class="place-marker aurora" type="button" data-open-place="aurora-reach"><span>The Aurora Reach</span></button>
         <button class="place-marker tidal" type="button" data-open-place="tidal-commons"><span>The Tidal Commons</span></button>
         <button class="place-marker canopy" type="button" data-open-place="the-canopy"><span>The Canopy</span></button>
@@ -928,6 +931,36 @@
     </section>
 
   </div>
+
+    <section class="place-experience prime-experience" id="prime-reserves" aria-hidden="true" aria-labelledby="prime-title" style="--experience-rgb: 38, 28, 18">
+      <img src="/prime-reserves.webp" alt="A copper and glass mineral research institute and global resource exchange among southern African highlands" />
+      <div class="experience-top">
+        <button class="experience-back" type="button" aria-label="Return to Earth"><span aria-hidden="true">←</span> Return to Earth</button>
+        <span class="experience-number">Critical minerals hub and resource exchange</span>
+      </div>
+      <div class="experience-copy">
+        <p class="experience-kicker">Knowing what the future is made of</p>
+        <h2 id="prime-title" tabindex="-1">Prime<br>Reserves</h2>
+        <p class="experience-summary">One of dozens of hubs connecting Earth’s mineral knowledge. Geologists, communities, and a global market calculate what lies below, what can responsibly be recovered, and what future industries will need.</p>
+        <a class="experience-source" href="https://primereserves.com" target="_blank" rel="noopener noreferrer">Discover the original Prime Reserves ↗</a><br>
+        <button class="light-button" type="button" data-open-day>Spend a day with Ines <span aria-hidden="true">→</span></button>
+      </div>
+      <aside class="day-panel" aria-hidden="true" aria-labelledby="prime-day-title">
+        <button class="day-close" type="button"><span aria-hidden="true">←</span> Back to Prime Reserves</button>
+        <div class="person">
+          <img class="person-photo" src="/ines.webp" alt="Portrait of Ines Vale" />
+          <div><b>Ines Vale</b><span>Resource geologist and market analyst · 41</span></div>
+        </div>
+        <h3 id="prime-day-title" tabindex="-1">An ordinary day in 2050</h3>
+        <p class="day-intro">Ines connects the patient work of geology with a fast-moving world. Every estimate carries its evidence, uncertainty, and the conditions that could change it.</p>
+        <div class="moments">
+          <article class="moment"><time>07:30</time><div><b>A deposit takes shape</b><p>Core samples, field surveys, and satellite observations join a shared geological model. Ines and her AI partner update a copper deposit’s estimated volume, grade, and confidence range.</p></div></article>
+          <article class="moment"><time>12:20</time><div><b>The reserve calculation</b><p>Engineers and local stewards review water, energy, recovery costs, permissions, and habitat limits. Ines separates geological potential from material that could feasibly become a reserve.</p></div></article>
+          <article class="moment"><time>18:10</time><div><b>The world exchange</b><p>Across dozens of hubs, the market compares verified supply estimates with demand for copper, lithium, nickel, and rare earths. Buyers weigh future production alongside recycling and substitution; every revision remains traceable.</p></div></article>
+        </div>
+        <p class="day-note">A deposit is a possibility. Understanding its limits is part of understanding its value.</p>
+      </aside>
+    </section>
 
   <script>
     const markers = document.querySelector('.map-markers');

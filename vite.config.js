@@ -44,6 +44,8 @@ const meridianImage = ${JSON.stringify(meridianImage)};
 const vitruviaImage = ${JSON.stringify(vitruviaImage)};
 const amberArchiveImage = ${JSON.stringify(amberArchiveImage)};
 const newPlaceImages = {
+  '/prime-reserves.webp': ${JSON.stringify(readFileSync('public/prime-reserves.webp').toString('base64'))},
+  '/ines.webp': ${JSON.stringify(readFileSync('public/ines.webp').toString('base64'))},
   '/aurora-reach.webp': ${JSON.stringify(readFileSync('public/aurora-reach.webp').toString('base64'))},
   '/mara.webp': ${JSON.stringify(readFileSync('public/mara.webp').toString('base64'))},
   '/living-treasury.webp': ${JSON.stringify(livingTreasuryImage)},
